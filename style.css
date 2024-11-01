@@ -5,3 +5,26 @@
   margin: 0;
   padding: 0;
 }
+
+:root {
+  --color-text-primary: #0e1217;
+  --color-text-secondary: #525866;
+
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: #f5f8fc;
+
+  --color-btn-primary-bg: #f1f2f3;
+  --color-btn-hover-bg: #f5f6f9;
+
+  --color-hover-bg: #dcdde0;
+
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2rem;
+
+  --padding-btn-sm: var(--space-xs) var(--space-md);
+  --padding-btn-md: var(--space-sm) var(--space-lg);
+
+  --margin-bottom-para: 1.5rem;
+}
