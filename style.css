@@ -28,3 +28,26 @@
 
   --margin-bottom-para: 1.5rem;
 }
+
+.container {
+  display: grid;
+  grid-template: 1fr 5fr / 1fr 5fr;
+  grid-template-areas:
+    "sidebar header"
+    "sidebar main";
+}
+
+.header {
+  background-color: lightgreen;
+  grid-area: header;
+}
+
+.sidebar {
+  background-color: lightcoral;
+  grid-area: sidebar;
+}
+
+.main {
+  background-color: lightskyblue;
+  grid-area: main;
+}
