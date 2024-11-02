@@ -1,3 +1,19 @@
+@font-face {
+  font-family: "robotoregular";
+  src: url("roboto-regular-webfont.woff2") format("woff2"),
+    url("roboto-regular-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "robotobold";
+  src: url("roboto-bold-webfont.woff2") format("woff2"),
+    url("roboto-bold-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
 *,
 *::before,
 *::after {
@@ -44,6 +60,14 @@ li {
   --radius-medium: 12px;
   --radius-large: 16px;
   --radius-round: 50%;
+
+  --font-regular: "robotoregular", sans-serif;
+  --font-bold: "robotobold", sans-serif;
+}
+
+body {
+  font-family: var(--font-regular);
+  color: var(--color-text-primary);
 }
 
 input,
