@@ -266,7 +266,7 @@ button {
     "recommended popular";
 
   gap: var(--space-md);
-  padding: var(--padding-btn-md);
+  padding: var(--space-md);
 }
 
 .featured {
