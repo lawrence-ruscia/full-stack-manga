@@ -82,6 +82,12 @@ button {
 
 button {
   cursor: pointer;
+
+  /* Disable text selection inside buttons */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .container {
