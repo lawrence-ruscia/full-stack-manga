@@ -46,6 +46,8 @@ li {
 
   --color-hover-bg: #dcdde0;
 
+  --color-border-separator: rgba(82, 88, 102, 0.6);
+
   --space-xs: 0.5rem;
   --space-sm: 1rem;
   --space-md: 1.5rem;
@@ -59,10 +61,13 @@ li {
   --radius-small: 8px;
   --radius-medium: 12px;
   --radius-large: 16px;
+  --radius-x-large: 24px;
   --radius-round: 50%;
 
   --font-regular: "robotoregular", sans-serif;
   --font-bold: "robotobold", sans-serif;
+
+  --border-separator: 1px solid var(--color-border-separator);
 }
 
 body {
@@ -100,6 +105,8 @@ button {
   top: 0;
   z-index: 10; /* Ensures it stays above content */
   width: 100%;
+
+  border-bottom: var(--border-separator);
 }
 
 .header button {
@@ -183,6 +190,8 @@ button {
   position: sticky;
   top: 0;
   height: 100vh;
+
+  border-right: var(--border-separator);
 }
 
 .logo {
@@ -234,12 +243,85 @@ button {
 }
 
 .menu-divider {
-  border-top: 1px solid var(--color-text-secondary);
+  border-top: var(--border-separator);
   margin: 30px var(--space-sm);
-  opacity: 0.6;
 }
 
 .main {
-  background-color: lightskyblue;
+  background-color: var(--color-bg-primary);
   grid-area: main;
+
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: auto auto;
+
+  grid-template-areas:
+    "featured recent"
+    "recommended popular";
+
+  gap: var(--space-md);
+  padding: var(--padding-btn-md);
+}
+
+.featured {
+  grid-area: featured;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  gap: var(--space-xs);
+
+  padding: var(--space-lg);
+  background-image: linear-gradient(
+      to bottom,
+      rgba(245, 246, 252, 0),
+      rgb(0 0 0 / 90%)
+    ),
+    url(./assets/images/feature-cover.jpeg);
+  background-size: cover;
+  background-position: center;
+
+  color: var(--color-bg-primary);
+
+  border-radius: 24px;
+}
+
+.genre {
+  display: flex;
+  gap: var(--space-sm);
+
+  font-size: 0.8rem;
+}
+
+.genre-card {
+  border: 1px solid white;
+  border-radius: var(--radius-small);
+  padding: var(--space-xs);
+
+  margin-bottom: var(--space-sm);
+}
+
+.details {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.details-btn {
+  padding: var(--space-xs);
+  border-radius: var(--radius-small);
+}
+
+.recently-added {
+  background-color: lightgreen;
+  grid-area: recent;
+}
+
+.recommended {
+  background-color: lightskyblue;
+  grid-area: recommended;
+}
+
+.popular-mangas {
+  background-color: lightpink;
+  grid-area: popular;
 }
