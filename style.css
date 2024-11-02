@@ -6,6 +6,18 @@
   padding: 0;
 }
 
+a,
+a:hover,
+a:focus,
+a:active {
+  text-decoration: none;
+  color: inherit;
+}
+
+li {
+  list-style: none;
+}
+
 :root {
   --color-text-primary: #0e1217;
   --color-text-secondary: #525866;
@@ -14,7 +26,7 @@
   --color-bg-secondary: #f5f8fc;
 
   --color-btn-primary-bg: #ededed;
-  --color-btn-hover-bg: #e4e4e4e7;
+  --color-btn-hover-bg: #d9d9d9e7;
 
   --color-hover-bg: #dcdde0;
 
@@ -132,8 +144,66 @@ button {
 }
 
 .sidebar {
-  background-color: lightcoral;
+  background-color: var(--color-bg-primary);
   grid-area: sidebar;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+
+  padding: var(--space-sm);
+}
+
+.logo-icon {
+  width: min(15%, 80px);
+  min-width: 40px;
+  height: auto;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+
+  padding: var(--space-sm);
+  gap: var(--space-md);
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+
+  gap: var(--space-sm);
+}
+
+.menu-icon {
+  display: grid;
+  place-items: center;
+
+  background-color: var(--color-btn-primary-bg);
+  border-radius: var(--radius-small);
+  width: 40px;
+  height: 40px;
+}
+
+.menu-item:hover .menu-icon {
+  background-color: var(--color-btn-hover-bg);
+}
+
+.logo-icon,
+.menu-icon {
+  margin-left: var(--space-sm);
+}
+
+.menu-divider {
+  border-top: 1px solid var(--color-text-secondary);
+  margin: 30px var(--space-sm);
+  opacity: 0.6;
 }
 
 .main {
