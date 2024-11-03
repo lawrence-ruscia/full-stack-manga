@@ -235,6 +235,8 @@ button {
   align-items: center;
 
   gap: var(--space-sm);
+
+  transition: background-color 0.3s ease;
 }
 
 .menu-icon {
@@ -247,8 +249,23 @@ button {
   height: 40px;
 }
 
+.active {
+  transition: color 0.25s ease;
+  stroke: var(--color-bg-primary);
+}
+
 .menu-item:hover .menu-icon {
-  background-color: var(--color-btn-hover-bg);
+  background-color: var(--btn-default-background);
+}
+
+.menu-icon.active,
+.menu-item:hover .icon {
+  background-color: var(--btn-default-background);
+  stroke: var(--color-bg-primary);
+}
+
+.menu-item:hover .nostroke {
+  fill: var(--color-bg-primary);
 }
 
 .logo-icon,
