@@ -258,7 +258,7 @@ button {
   grid-area: main;
 
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 1fr auto;
   grid-template-rows: auto auto;
 
   grid-template-areas:
@@ -289,7 +289,7 @@ button {
 
   color: var(--color-bg-primary);
 
-  border-radius: 24px;
+  border-radius: var(--radius-large);
 }
 
 .genre {
@@ -312,14 +312,51 @@ button {
   gap: var(--space-sm);
 }
 
-.details-btn {
-  padding: var(--space-xs);
-  border-radius: var(--radius-small);
+.recently-added {
+  background-color: var(--color-bg-secondary);
+  grid-area: recent;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+
+  padding: var(--space-sm);
+  border-radius: var(--radius-large);
 }
 
-.recently-added {
-  background-color: lightgreen;
-  grid-area: recent;
+.manga-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: var(--space-md);
+}
+
+.manga-poster {
+  width: 60px;
+  display: grid;
+  place-items: center;
+}
+
+.manga-poster-img {
+  object-fit: cover;
+  width: 100%;
+}
+
+.manga-detail {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  width: 15ch;
+  overflow-wrap: break-word;
+  margin-right: var(--space-sm);
+}
+
+.read-now,
+.view-info {
+  background-color: var(--color-btn-primary-bg);
+  color: var(--color-text-primary);
+  padding: var(--padding-btn-sm);
+  border-radius: var(--radius-small);
 }
 
 .recommended {
