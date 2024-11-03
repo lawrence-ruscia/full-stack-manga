@@ -46,15 +46,16 @@ li {
 
   --color-hover-bg: #dcdde0;
 
-  --color-border-separator: rgba(82, 88, 102, 0.6);
+  --color-border-default: #e0e0e0;
 
   --space-xs: 0.5rem;
   --space-sm: 1rem;
   --space-md: 1.5rem;
   --space-lg: 2rem;
 
-  --padding-btn-sm: var(--space-xs) var(--space-md);
-  --padding-btn-md: var(--space-sm) var(--space-lg);
+  --padding-btn-sm: 0.4rem 0.8rem;
+  --padding-btn-md: 0.6rem 1.2rem;
+  --padding-btn-lg: 0.8rem 1.5rem;
 
   --margin-bottom-para: 1.5rem;
 
@@ -67,7 +68,13 @@ li {
   --font-regular: "robotoregular", sans-serif;
   --font-bold: "robotobold", sans-serif;
 
-  --border-separator: 1px solid var(--color-border-separator);
+  --border-separator: 1px solid var(--color-border-default);
+
+  --btn-default-background: #ac1de4;
+  --btn-hover-background: #9e15d9;
+  --btn-active-background: #8505c4;
+
+  --btn-secondary-background: #e3c0f6;
 }
 
 body {
@@ -88,6 +95,8 @@ button {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+
+  font-weight: 700;
 }
 
 .container {
@@ -269,6 +278,16 @@ button {
   padding: var(--space-md);
 }
 
+.main-card {
+  border: var(--border-separator);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+.main-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
 .featured {
   grid-area: featured;
 
@@ -312,13 +331,27 @@ button {
   gap: var(--space-sm);
 }
 
+.details-btn {
+  padding: var(--padding-btn-md);
+  border-radius: var(--radius-medium);
+}
+
+.view-info {
+  background-color: var(--color-bg-primary);
+}
+
+.view-info:hover {
+  background: var(--color-btn-hover-bg);
+}
+
 .recently-added {
-  background-color: var(--color-bg-secondary);
   grid-area: recent;
+
   display: flex;
   flex-direction: column;
   gap: var(--space-sm);
 
+  background-color: var(--color-bg-secondary);
   padding: var(--space-sm);
   border-radius: var(--radius-large);
 }
@@ -342,6 +375,15 @@ button {
   width: 100%;
 }
 
+.read-now {
+  background-color: var(--btn-default-background);
+  color: var(--color-bg-primary);
+}
+
+.read-now:hover {
+  background-color: var(--btn-hover-background);
+}
+
 .manga-detail {
   display: flex;
   flex-direction: column;
@@ -351,16 +393,16 @@ button {
   margin-right: var(--space-sm);
 }
 
-.read-now,
-.view-info {
-  background-color: var(--color-btn-primary-bg);
-  color: var(--color-text-primary);
+.manga-detail-btn {
   padding: var(--padding-btn-sm);
   border-radius: var(--radius-small);
 }
 
+.manga-title {
+  font-weight: 700;
+}
+
 .recommended {
-  background-color: lightskyblue;
   grid-area: recommended;
 }
 
