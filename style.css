@@ -37,7 +37,8 @@ li {
 :root {
   --color-text-primary: #0e1217;
   --color-text-secondary: #525866;
-  --color-delete: #ff3f56;
+  --color-delete-bg: #ff3f56;
+  --color-delete-hover-bg: #e0354a;
 
   --color-bg-primary: #ffffff;
   --color-bg-secondary: #f3f4f6;
@@ -488,9 +489,14 @@ button {
 }
 
 .card-option-btn.remove {
-  border: 1px solid var(--color-delete);
+  border: 1px solid var(--color-delete-bg);
   background-color: var(--color-bg-primary);
-  color: var(--color-delete);
+  color: var(--color-delete-bg);
+}
+
+.card-option-btn.remove:hover {
+  color: var(--color-bg-primary);
+  background-color: var(--color-delete-hover-bg);
 }
 
 .manga-cover {
