@@ -109,6 +109,7 @@ button {
     "sidebar main";
 }
 
+/* Header */
 .header {
   background-color: var(--color-bg-primary);
   grid-area: header;
@@ -196,6 +197,7 @@ button {
   overflow: hidden;
 }
 
+/* Siderbar */
 .sidebar {
   background-color: var(--color-bg-primary);
   grid-area: sidebar;
@@ -281,6 +283,7 @@ button {
   margin: 30px var(--space-sm);
 }
 
+/* Main */
 .main {
   background-color: var(--color-bg-secondary);
   grid-area: main;
@@ -315,6 +318,7 @@ button {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
+/* Featured */
 .featured {
   grid-area: featured;
 
@@ -368,6 +372,7 @@ button {
   background: var(--color-btn-hover-bg);
 }
 
+/* Recently added */
 .recently-added {
   grid-area: recent;
   display: flex;
@@ -436,6 +441,7 @@ button {
   font-weight: 700;
 }
 
+/* Recommended */
 .recommended {
   grid-area: recommended;
   display: grid;
@@ -519,6 +525,7 @@ button {
   height: 100%;
 }
 
+/* Popular mangas */
 .popular-mangas {
   grid-area: popular;
   display: flex;
@@ -574,7 +581,7 @@ button {
   place-items: center;
 }
 
-.ranking-number:hover {
+.popular-item:hover .ranking-number {
   color: var(--btn-default-background);
 }
 
