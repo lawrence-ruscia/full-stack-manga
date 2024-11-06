@@ -67,7 +67,7 @@ li {
   --radius-round: 50%;
 
   --font-regular: "robotoregular", sans-serif;
-  --font-bold: "robotobold", sans-serif;
+  --weight-bold: 700;
 
   --border-separator: 1px solid var(--color-border-default);
 
@@ -97,7 +97,7 @@ button {
   -ms-user-select: none;
   user-select: none;
 
-  font-weight: 700;
+  font-weight: var(--weight-bold);
   color: var(--color-text-primary);
 }
 
@@ -305,6 +305,10 @@ button {
 
   border-radius: var(--radius-large);
   padding: var(--space-lg);
+
+  gap: var(--space-sm);
+
+  background-color: var(--color-bg-primary);
 }
 
 .main-card:hover {
@@ -366,13 +370,17 @@ button {
 
 .recently-added {
   grid-area: recent;
-
   display: flex;
   flex-direction: column;
-  gap: var(--space-sm);
 }
 
 .manga-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.manga-item {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -432,7 +440,6 @@ button {
   grid-area: recommended;
   display: grid;
   grid-template-rows: auto 1fr;
-  gap: var(--space-sm);
 }
 
 .card-header {
@@ -513,6 +520,65 @@ button {
 }
 
 .popular-mangas {
-  background-color: lightpink;
   grid-area: popular;
+  display: flex;
+  flex-direction: column;
+}
+
+.popular-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.popular-item {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-template-areas:
+    "manga-poster details"
+    "manga-poster favorite";
+}
+
+.popular-item .manga-poster {
+  grid-area: manga-poster;
+  margin-right: var(--space-sm);
+}
+
+.popular-details {
+  grid-area: details;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  margin-bottom: var(--space-xs);
+}
+
+.favorite {
+  grid-area: favorite;
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.favorite img {
+  width: 10%;
+  margin-top: -5px;
+}
+
+.ranking-number {
+  font-weight: var(--weight-bold);
+  background-color: var(--color-bg-secondary);
+  width: 40px;
+  height: 40px;
+  font-size: 1.5rem;
+  display: grid;
+  place-items: center;
+}
+
+.ranking-number:hover {
+  color: var(--btn-default-background);
+}
+
+.top-rank {
+  background-color: var(--btn-secondary-background);
+  color: var(--btn-default-background);
 }
