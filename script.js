@@ -103,13 +103,17 @@ function createCardItem(book) {
   return cardItem;
 }
 
-function displayBook(book) {
-  const cardContainer = document.querySelector(".card-container");
-  const cardItem = createCardItem(book);
-  cardContainer.appendChild(cardItem);
-}
-
 const myLibrary = [];
+
+function updateLibrary() {
+  const cardContainer = document.querySelector(".card-container");
+
+  myLibrary.forEach((book) => {
+    const cardItem = createCardItem(book);
+    console.log(book);
+    cardContainer.appendChild(cardItem);
+  });
+}
 
 function Book(title, author, chapters, readStatus) {
   this.title = title;
@@ -144,15 +148,10 @@ function submitFormData() {
     const read = document.querySelector('input[name="read"]').checked;
 
     const book = createBook(title, author, chapters, read);
-    updatePreview(book);
-
+    addBookToLibrary(book);
+    updateLibrary();
     addMangaModal.close();
   });
-}
-
-function updatePreview(book) {
-  addBookToLibrary(book);
-  displayBook(book);
 }
 
 toggleAddMangaModal();
