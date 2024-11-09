@@ -6,7 +6,7 @@
     <title>Full Stack manga</title>
     <link rel="stylesheet" href="normalize.css" />
     <link rel="stylesheet" href="style.css" />
-    <script src="script.js"></script>
+    <script defer src="script.js"></script>
   </head>
   <body>
     <div class="container">
@@ -292,6 +292,94 @@
               </svg>
               Add Manga
             </button>
+            <dialog id="add-manga-modal">
+              <div class="modal-container">
+                <div class="modal-header">
+                  <div class="header-detail">
+                    <img
+                      src="./assets/images/add-manga-icon.svg"
+                      alt=""
+                      class="modal-icon"
+                    />
+                    <h2 class="modal-title">Add New Manga</h2>
+                    <p class="modal-description">
+                      Enter the details to add a new manga.
+                    </p>
+                  </div>
+                  <button type="button" class="modal-close">
+                    <img
+                      src="./assets/images/close-icon.svg"
+                      alt=""
+                      class="class-close-icon"
+                    />
+                  </button>
+                </div>
+                <div class="modal-main">
+                  <form method="dialog" id="modal-form">
+                    <div class="form-group">
+                      <label for="manga-title">Manga Title</label>
+                      <input
+                        type="text"
+                        id="manga-title"
+                        name="title"
+                        placeholder="Enter the title of the manga"
+                        required
+                        class="form-group-input"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="manga-author">Author</label>
+                      <input
+                        type="text"
+                        id="manga-author"
+                        name="author"
+                        placeholder="Enter the name of the author"
+                        required
+                        class="form-group-input"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="manga-chapters">Number of Chapters</label>
+                      <input
+                        type="number"
+                        min="1"
+                        id="manga-chapters"
+                        name="chapters"
+                        placeholder="e.g., 120"
+                        required
+                        class="form-group-input"
+                      />
+                    </div>
+                    <div class="toggle-switch">
+                      <div class="form-group-checkbox">
+                        <input
+                          type="checkbox"
+                          id="read-status"
+                          name="read"
+                          class="toggle-input"
+                        />
+                        <label for="read-status" class="toggle-label">
+                          <span class="toggle-button"></span>
+                        </label>
+                      </div>
+                      <span class="form-group-checkbox-text"
+                        >Already Read?</span
+                      >
+                    </div>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="cancel-btn">Cancel</button>
+                  <button
+                    type="button"
+                    class="add-manga-confirm"
+                    form="modal-form"
+                  >
+                    Add Manga
+                  </button>
+                </div>
+              </div>
+            </dialog>
           </div>
           <div class="card-container">
             <div class="card-item">

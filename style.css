@@ -34,6 +34,18 @@ li {
   list-style: none;
 }
 
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
 :root {
   --color-text-primary: #0e1217;
   --color-text-secondary: #525866;
@@ -60,6 +72,7 @@ li {
 
   --margin-bottom-para: 1.5rem;
 
+  --radius-x-small: 4px;
   --radius-small: 8px;
   --radius-medium: 12px;
   --radius-large: 16px;
@@ -68,12 +81,15 @@ li {
 
   --font-regular: "robotoregular", sans-serif;
   --weight-bold: 700;
+  --weight-medium: 600;
 
   --border-separator: 1px solid var(--color-border-default);
 
   --btn-default-background: #ac1de4;
   --btn-hover-background: #9e15d9;
   --btn-active-background: #8505c4;
+
+  --btn-offstate-background: #c5c6c7;
 
   --btn-secondary-background: #e3c0f6;
 }
@@ -588,4 +604,188 @@ button {
 .top-rank {
   background-color: var(--btn-secondary-background);
   color: var(--btn-default-background);
+}
+
+/* Modal dialog */
+#add-manga-modal {
+  margin: auto;
+  width: min(500px, 80%);
+  max-height: 70vh;
+  padding: var(--space-md);
+
+  border-radius: var(--radius-medium);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  border: none;
+}
+
+#add-manga-modal::backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-container {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    "header"
+    "main"
+    "footer";
+  gap: var(--space-lg);
+}
+
+/* Modal header */
+.modal-header {
+  grid-area: header;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-detail {
+  display: grid;
+  grid-template-areas:
+    "icon title"
+    "icon description";
+  align-items: center;
+}
+
+.modal-icon {
+  grid-area: icon;
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-medium);
+  padding: var(--space-sm);
+  margin-right: var(--space-sm);
+  width: 72px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.modal-title {
+  grid-area: title;
+}
+
+.modal-description {
+  grid-area: description;
+}
+
+.modal-close {
+  align-self: start;
+  background-color: var(--color-bg-primary);
+}
+
+/* Modal main */
+.modal-main {
+  grid-area: main;
+}
+
+#modal-form {
+  display: flex;
+  flex-direction: column;
+
+  gap: var(--space-md);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.form-group label {
+  font-weight: var(--weight-medium);
+}
+
+.form-group-input {
+  padding: var(--space-sm);
+  outline: none;
+  border: 2px solid var(--color-border-default);
+  border-radius: var(--radius-small);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.form-group-input:hover,
+.form-group-input:focus {
+  border: 2px solid var(--color-text-primary);
+}
+
+.form-group input[type="text"]::placeholder {
+  color: var(--color-text-secondary);
+}
+
+/* Toggle Switch */
+.toggle-switch {
+  display: flex;
+  gap: var(--space-sm);
+  align-items: center;
+}
+
+.form-group-checkbox {
+  display: inline-block;
+  position: relative;
+}
+
+.toggle-input {
+  display: none;
+}
+
+.toggle-label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  background: var(--btn-offstate-background);
+  border-radius: var(--radius-x-small);
+  width: 40px;
+  height: 12px;
+  transition: background-color 0.3s ease;
+  position: relative;
+}
+
+.toggle-button {
+  content: "";
+  display: block;
+  width: 20px;
+  height: 20px;
+  background-color: var(--color-text-secondary);
+  border-radius: 6px;
+  position: absolute;
+  top: -4px;
+  left: 0;
+  transition: transform 0.3s ease;
+}
+
+.toggle-input:checked + .toggle-label > .toggle-button {
+  background-color: var(--btn-active-background);
+}
+.toggle-input:checked + .toggle-label {
+  background-color: var(--btn-secondary-background);
+}
+
+.toggle-input:checked + .toggle-label .toggle-button {
+  transform: translateX(20px); /* Move button to the right when checked */
+}
+
+.form-group-checkbox-text {
+  font-weight: var(--weight-medium);
+}
+
+.modal-footer {
+  grid-area: footer;
+
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.modal-footer button {
+  padding: var(--padding-btn-lg);
+  border-radius: var(--radius-small);
+}
+
+.add-manga-confirm {
+  background-color: var(--btn-default-background);
+  color: var(--color-bg-primary);
+}
+
+.cancel-btn {
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  border: var(--border-separator);
 }
