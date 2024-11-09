@@ -75,6 +75,9 @@ input[type="number"] {
   --radius-x-large: 24px;
   --radius-round: 50%;
 
+  --min-width-btn-small: 110px;
+  --min-width-btn-medium: 120px;
+
   --font-regular: "robotoregular", sans-serif;
   --weight-bold: 700;
   --weight-medium: 600;
@@ -160,10 +163,12 @@ button {
 }
 
 .small-btn {
+  min-width: var(--min-width-btn-small);
   padding: var(--padding-btn-sm);
 }
 
 .medium-btn {
+  min-width: var(--min-width-btn-medium);
   padding: var(--padding-btn-md);
 }
 
