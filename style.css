@@ -53,11 +53,7 @@ input[type="number"] {
   --color-delete-hover-bg: #e0354a;
 
   --color-bg-primary: #ffffff;
-  --color-bg-secondary: #f3f4f6;
-
-  --color-btn-hover-bg: #d9d9d9e7;
-
-  --color-hover-bg: #dcdde0;
+  --color-btn-accent-bg: #f3f4f6;
 
   --color-border-default: #e0e0e0;
 
@@ -85,13 +81,15 @@ input[type="number"] {
 
   --border-separator: 1px solid var(--color-border-default);
 
-  --btn-default-background: #ac1de4;
-  --btn-hover-background: #9e15d9;
-  --btn-active-background: #8505c4;
+  --color-btn-primary-bg: #ac1de4;
+  --color-btn-primary-hover-bg: #9e15d9;
+  --color-btn-primary-active-bg: #8505c4;
 
-  --btn-offstate-background: #c5c6c7;
+  --color-btn-secondary-bg: var(--color-bg-primary);
+  --color-btn-secondary-hover-bg: #d9d9d9e7;
 
-  --btn-secondary-background: #e3c0f6;
+  --color-btn-offstate-bg: #c5c6c7;
+  --color-btn-onstate-bg: #e3c0f6;
 }
 
 body {
@@ -115,6 +113,8 @@ button {
 
   font-weight: var(--weight-bold);
   color: var(--color-text-primary);
+
+  text-align: center;
 }
 
 .container {
@@ -123,6 +123,58 @@ button {
   grid-template-areas:
     "sidebar header"
     "sidebar main";
+}
+
+/* Button styling */
+.remove-btn {
+  border: 1px solid var(--color-delete-bg);
+  background-color: var(--color-bg-primary);
+  color: var(--color-delete-bg);
+}
+
+.remove-btn:hover {
+  color: var(--color-bg-primary);
+  background-color: var(--color-delete-hover-bg);
+}
+
+.primary-btn {
+  background: var(--color-btn-primary-bg);
+  color: var(--color-bg-primary);
+}
+
+.primary-btn:hover {
+  background-color: var(--color-btn-primary-hover-bg);
+}
+
+.primary-btn:active {
+  background-color: var(--color-btn-primary-active-bg);
+}
+
+.secondary-btn {
+  background-color: var(--color-btn-secondary-bg);
+  color: var(--color-text-primary);
+}
+
+.secondary-btn:hover {
+  background-color: var(--color-btn-secondary-hover-bg);
+}
+
+.small-btn {
+  padding: var(--padding-btn-sm);
+}
+
+.medium-btn {
+  padding: var(--padding-btn-md);
+}
+
+.large-btn {
+  padding: var(--padding-btn-lg);
+}
+
+.small-btn,
+.medium-btn,
+.large-btn {
+  border-radius: var(--radius-small);
 }
 
 /* Header */
@@ -152,11 +204,11 @@ button {
   height: 2.5rem;
 
   border: none;
-  background-color: var(--color-bg-secondary);
+  background-color: var(--color-btn-accent-bg);
 }
 
 .header button:hover {
-  background-color: var(--color-btn-hover-bg);
+  background-color: var(--color-btn-secondary-hover-bg);
 }
 
 .search-container {
@@ -172,7 +224,7 @@ button {
   width: 100%;
   border: none;
   border-radius: var(--radius-small);
-  background-color: var(--color-bg-secondary);
+  background-color: var(--color-btn-accent-bg);
   padding: 1rem 2rem 1rem 3rem;
 }
 
@@ -197,8 +249,7 @@ button {
   gap: 1rem;
 }
 
-.notif-btn,
-.theme-btn {
+.header-btn {
   border-radius: var(--radius-medium);
 }
 
@@ -208,7 +259,7 @@ button {
   object-fit: cover;
 }
 
-.profile-btn {
+#profile-btn {
   border-radius: var(--radius-round);
   overflow: hidden;
 }
@@ -262,7 +313,7 @@ button {
   display: grid;
   place-items: center;
 
-  background-color: var(--color-bg-secondary);
+  background-color: var(--color-btn-accent-bg);
   border-radius: var(--radius-small);
   width: 40px;
   height: 40px;
@@ -276,12 +327,12 @@ button {
 
 .menu-item:hover .menu-icon {
   transition: color ease 0.25s;
-  background-color: var(--btn-default-background);
+  background-color: var(--color-btn-primary-bg);
 }
 
 .menu-icon.active,
 .menu-item:hover .icon {
-  background-color: var(--btn-default-background);
+  background-color: var(--color-btn-primary-bg);
   stroke: var(--color-bg-primary);
 }
 
@@ -301,7 +352,7 @@ button {
 
 /* Main */
 .main {
-  background-color: var(--color-bg-secondary);
+  background-color: var(--color-btn-accent-bg);
   grid-area: main;
 
   display: grid;
@@ -375,17 +426,12 @@ button {
   gap: var(--space-sm);
 }
 
-.details-btn {
-  padding: var(--padding-btn-md);
-  border-radius: var(--radius-medium);
-}
-
 .view-info {
   background-color: var(--color-bg-primary);
 }
 
 .view-info:hover {
-  background: var(--color-btn-hover-bg);
+  background: var(--color-btn-primary-hover-bg);
 }
 
 /* Recently added */
@@ -422,23 +468,6 @@ button {
   width: 100%;
 }
 
-.read-now,
-.view-info,
-#add-manga {
-  border-radius: var(--radius-small);
-}
-
-.read-now,
-#add-manga {
-  background-color: var(--btn-default-background);
-  color: var(--color-bg-primary);
-}
-
-.read-now:hover,
-#add-manga:hover {
-  background-color: var(--btn-hover-background);
-}
-
 .manga-detail {
   display: flex;
   flex-direction: column;
@@ -446,11 +475,6 @@ button {
   width: 15ch;
   overflow-wrap: break-word;
   margin-right: var(--space-sm);
-}
-
-.manga-detail-btn {
-  padding: var(--padding-btn-sm);
-  border-radius: var(--radius-small);
 }
 
 .manga-title {
@@ -511,21 +535,6 @@ button {
   gap: var(--space-sm);
 
   margin-top: var(--space-sm);
-}
-.card-option-btn {
-  padding: var(--padding-btn-sm);
-  border-radius: var(--radius-small);
-}
-
-.card-option-btn.remove {
-  border: 1px solid var(--color-delete-bg);
-  background-color: var(--color-bg-primary);
-  color: var(--color-delete-bg);
-}
-
-.card-option-btn.remove:hover {
-  color: var(--color-bg-primary);
-  background-color: var(--color-delete-hover-bg);
 }
 
 .manga-cover {
@@ -589,7 +598,7 @@ button {
 
 .ranking-number {
   font-weight: var(--weight-bold);
-  background-color: var(--color-bg-secondary);
+  background-color: var(--color-btn-accent-bg);
   width: 40px;
   height: 40px;
   font-size: 1.5rem;
@@ -598,12 +607,12 @@ button {
 }
 
 .popular-item:hover .ranking-number {
-  color: var(--btn-default-background);
+  color: var(--color-btn-primary-bg);
 }
 
 .top-rank {
-  background-color: var(--btn-secondary-background);
-  color: var(--btn-default-background);
+  background-color: var(--color-btn-onstate-bg);
+  color: var(--color-btn-primary-bg);
 }
 
 /* Modal dialog */
@@ -729,7 +738,7 @@ button {
   display: flex;
   align-items: center;
   cursor: pointer;
-  background: var(--btn-offstate-background);
+  background: var(--color-btn-offstate-bg);
   border-radius: var(--radius-x-small);
   width: 40px;
   height: 12px;
@@ -751,10 +760,10 @@ button {
 }
 
 .toggle-input:checked + .toggle-label > .toggle-button {
-  background-color: var(--btn-active-background);
+  background-color: var(--color-btn-primary-active-bg);
 }
 .toggle-input:checked + .toggle-label {
-  background-color: var(--btn-secondary-background);
+  background-color: var(--color-btn-onstate-bg);
 }
 
 .toggle-input:checked + .toggle-label .toggle-button {
@@ -769,23 +778,15 @@ button {
   grid-area: footer;
 
   display: flex;
-  justify-content: end;
+  justify-content: space-between;
   align-items: center;
   gap: var(--space-sm);
 }
 
-.modal-footer button {
-  padding: var(--padding-btn-lg);
-  border-radius: var(--radius-small);
-}
-
-.add-manga-confirm {
-  background-color: var(--btn-default-background);
-  color: var(--color-bg-primary);
+.modal-footer > button {
+  width: 50%;
 }
 
 .cancel-btn {
-  background-color: var(--color-bg-primary);
-  color: var(--color-text-primary);
   border: var(--border-separator);
 }

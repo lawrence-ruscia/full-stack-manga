@@ -21,21 +21,21 @@
         </div>
 
         <div class="options">
-          <button type="button" class="notif-btn">
+          <button type="button" class="header-btn">
             <img
               src="./assets/images/notif-icon.svg"
               alt="Notification icon"
               class="notif-icon"
             />
           </button>
-          <button type="button" class="theme-btn">
+          <button type="button" class="header-btn">
             <img
               src="./assets/images/theme-icon.svg"
               alt="Theme icon"
               class="theme-icon"
             />
           </button>
-          <button type="button" class="profile-btn">
+          <button type="button" id="profile-btn">
             <img
               src="./assets/images/profile-icon.jpeg"
               alt="Profile icon"
@@ -265,8 +265,10 @@
             <span class="genre-card">Supernatural</span>
           </div>
           <div class="details">
-            <button type="button" class="details-btn read-now">Read Now</button>
-            <button type="button" class="details-btn view-info">
+            <button type="button" class="primary-btn medium-btn">
+              Read Now
+            </button>
+            <button type="button" class="secondary-btn medium-btn">
               View Info
             </button>
           </div>
@@ -274,7 +276,7 @@
         <div class="main-card recommended">
           <div class="card-header">
             <h2 class="title">Recommended for You</h2>
-            <button type="button" id="add-manga">
+            <button type="button" id="add-manga" class="primary-btn medium-btn">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -369,10 +371,16 @@
                   </form>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="cancel-btn">Cancel</button>
                   <button
                     type="button"
-                    class="add-manga-confirm"
+                    class="cancel-btn secondary-btn large-btn"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="button"
+                    id="add-manga-confirm"
+                    class="primary-btn large-btn"
                     form="modal-form"
                   >
                     Add Manga
@@ -395,10 +403,10 @@
                 <h3 class="card-title">One Piece</h3>
                 <p class="author">Eiichiro Oda</p>
                 <div class="card-option">
-                  <button type="button" class="card-option-btn read-now">
+                  <button type="button" class="primary-btn small-btn">
                     Read Now
                   </button>
-                  <button type="button" class="card-option-btn remove">
+                  <button type="button" class="remove-btn small-btn">
                     Remove
                   </button>
                 </div>
@@ -418,10 +426,10 @@
                 <h3 class="card-title">Grand Blue</h3>
                 <p class="author">Kenji Inoue</p>
                 <div class="card-option">
-                  <button type="button" class="card-option-btn read-now">
+                  <button type="button" class="primary-btn small-btn">
                     Read Now
                   </button>
-                  <button type="button" class="card-option-btn remove">
+                  <button type="button" class="remove-btn small-btn">
                     Remove
                   </button>
                 </div>
@@ -441,10 +449,10 @@
                 <h3 class="card-title">Chainsaw Man</h3>
                 <p class="author">Tatsuki Fujimoto</p>
                 <div class="card-option">
-                  <button type="button" class="card-option-btn read-now">
+                  <button type="button" class="primary-btn small-btn">
                     Read Now
                   </button>
-                  <button type="button" class="card-option-btn remove">
+                  <button type="button" class="remove-btn small-btn">
                     Remove
                   </button>
                 </div>
@@ -468,7 +476,7 @@
                 <a href="" class="manga-title">OSHI NO KO</a>
                 <p class="genre">Shounen, Sports</p>
               </div>
-              <button type="button" class="manga-detail-btn read-now">
+              <button type="button" class="primary-btn small-btn">
                 Read Now
               </button>
             </div>
@@ -484,7 +492,7 @@
                 <a href="" class="manga-title">One Punch Man</a>
                 <p class="genre">Action, Comedy</p>
               </div>
-              <button type="button" class="manga-detail-btn read-now">
+              <button type="button" class="primary-btn small-btn">
                 Read Now
               </button>
             </div>
@@ -500,7 +508,7 @@
                 <a href="" class="manga-title">Solo Leveling</a>
                 <p class="genre">Action, Adventure</p>
               </div>
-              <button type="button" class="manga-detail-btn read-now">
+              <button type="button" class="primary-btn small-btn">
                 Read Now
               </button>
             </div>
@@ -516,7 +524,7 @@
                 <a href="" class="manga-title">Blue Box</a>
                 <p class="genre">Romance, Sports</p>
               </div>
-              <button type="button" class="manga-detail-btn read-now">
+              <button type="button" class="primary-btn small-btn">
                 Read Now
               </button>
             </div>
