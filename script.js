@@ -71,6 +71,7 @@ function createButton(buttonType, textContent) {
 function createCardOption() {
   const cardOption = document.createElement("div");
   const readNowBtn = createButton("primary", "Read Now");
+  readNowBtn.classList.add("readnow");
   const removeBtn = createButton("remove", "Remove");
 
   cardOption.classList.add("card-option");
@@ -154,5 +155,17 @@ function submitFormData() {
   });
 }
 
+function toggleReadStatus() {
+  const readNowBtn = document.querySelectorAll(".readnow");
+  readNowBtn.forEach((button) => {
+    button.addEventListener("click", () => {
+      let readStatus =
+        button.textContent === "Read Now" ? "Continue" : "Read Now";
+      button.textContent = readStatus;
+    });
+  });
+}
+
+toggleReadStatus();
 toggleAddMangaModal();
 submitFormData();
