@@ -166,6 +166,25 @@ function toggleReadStatus() {
   });
 }
 
+function removeBook() {
+  const cardContainer = document.querySelector(".card-container");
+
+  cardContainer.addEventListener("click", (e) => {
+    const target = e.target;
+
+    if (target.classList.contains("remove-btn")) {
+      const card = target.closest(".card-item");
+
+      if (card) {
+        card.remove();
+      }
+    }
+
+    updateLibrary();
+  });
+}
+
 toggleReadStatus();
 toggleAddMangaModal();
+removeBook();
 submitFormData();
