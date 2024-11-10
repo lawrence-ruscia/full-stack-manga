@@ -24,7 +24,7 @@ function toggleAddMangaModal() {
 function createMangaCover() {
   const mangaCover = document.createElement("div");
   const image = document.createElement("img");
-  image.src = "./assets/images/solo-leveling-cover.webp"; // temp image
+  image.src = "./assets/images/placeholder.png"; // temp image
   image.alt = "Manga cover";
   image.classList.add("manga-cover-img");
   image.loading = "lazy";
@@ -106,18 +106,13 @@ function createCardItem(book) {
 
 const myLibrary = [];
 
-function updateLibrary() {
+function renderBook(book, index) {
+  console.log(book);
   const cardContainer = document.querySelector(".card-container");
+  const cardItem = createCardItem(book);
+  cardItem.dataset.index = index;
 
-  // if (myLibrary.length === 0) {
-  //   toggleNoMangasMessage();
-  // }
-
-  myLibrary.forEach((book) => {
-    const cardItem = createCardItem(book);
-    console.log(book);
-    cardContainer.appendChild(cardItem);
-  });
+  cardContainer.appendChild(cardItem);
 }
 
 function Book(title, author, chapters, readStatus) {
@@ -154,7 +149,8 @@ function submitFormData() {
 
     const book = createBook(title, author, chapters, read);
     addBookToLibrary(book);
-    updateLibrary();
+
+    renderBook(book, myLibrary.length - 1);
     addMangaModal.close();
   });
 }
@@ -174,17 +170,17 @@ function removeBook() {
   const cardContainer = document.querySelector(".card-container");
 
   cardContainer.addEventListener("click", (e) => {
-    const target = e.target;
-
-    if (target.classList.contains("remove-btn")) {
-      const card = target.closest(".card-item");
+    if (e.target.classList.contains("remove-btn")) {
+      const card = e.target.closest(".card-item");
+      const index = card.dataset.index;
 
       if (card) {
+        myLibrary.splice(index, 1);
         card.remove();
+
+        renderBook();
       }
     }
-
-    updateLibrary();
   });
 }
 
