@@ -512,6 +512,12 @@ button {
   gap: var(--space-md);
 }
 
+.no-mangas-message {
+  display: flex;
+  flex-direction: column;
+  
+}
+
 .card-item {
   display: flex;
   flex-direction: column;

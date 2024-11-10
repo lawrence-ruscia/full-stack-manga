@@ -109,6 +109,10 @@ const myLibrary = [];
 function updateLibrary() {
   const cardContainer = document.querySelector(".card-container");
 
+  // if (myLibrary.length === 0) {
+  //   toggleNoMangasMessage();
+  // }
+
   myLibrary.forEach((book) => {
     const cardItem = createCardItem(book);
     console.log(book);
@@ -156,13 +160,13 @@ function submitFormData() {
 }
 
 function toggleReadStatus() {
-  const readNowBtn = document.querySelectorAll(".readnow");
-  readNowBtn.forEach((button) => {
-    button.addEventListener("click", () => {
-      let readStatus =
-        button.textContent === "Read Now" ? "Continue" : "Read Now";
-      button.textContent = readStatus;
-    });
+  document.addEventListener("click", (e) => {
+    const target = e.target;
+
+    if (target.classList.contains("readnow")) {
+      target.textContent =
+        target.textContent.trim() === "Read Now" ? "Continue" : "Read Now";
+    }
   });
 }
 
