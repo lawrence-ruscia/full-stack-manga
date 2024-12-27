@@ -68,9 +68,10 @@ function createButton(buttonType, textContent) {
 
   return button;
 }
-function createCardOption() {
+function createCardOption(readStatus) {
   const cardOption = document.createElement("div");
-  const readNowBtn = createButton("primary", "Read Now");
+  const readStatusText = readStatus ? "Continue" : "Read Now";
+  const readNowBtn = createButton("primary", readStatusText);
   readNowBtn.classList.add("readnow");
   const removeBtn = createButton("remove", "Remove");
 
@@ -79,12 +80,11 @@ function createCardOption() {
 
   return cardOption;
 }
-
 function createCardInfo(book) {
   const cardInfo = document.createElement("div");
   const cardTitle = createCardTitle(book.title);
   const cardAuthor = createCardAuthor(book.author);
-  const cardOption = createCardOption();
+  const cardOption = createCardOption(book.readStatus);
 
   cardInfo.classList.add("card-info");
   cardInfo.append(cardTitle, cardAuthor, cardOption);
@@ -158,7 +158,6 @@ function submitFormData() {
 function toggleReadStatus() {
   document.addEventListener("click", (e) => {
     const target = e.target;
-
     if (target.classList.contains("readnow")) {
       target.textContent =
         target.textContent.trim() === "Read Now" ? "Continue" : "Read Now";
