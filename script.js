@@ -104,8 +104,6 @@ function createCardItem(book) {
   return cardItem;
 }
 
-const myLibrary = [];
-
 function renderBook(book, index) {
   console.log(book);
   const cardContainer = document.querySelector(".card-container");
@@ -113,6 +111,24 @@ function renderBook(book, index) {
   cardItem.dataset.index = index;
 
   cardContainer.appendChild(cardItem);
+}
+
+class Library {
+  #myLibrary = [];
+
+  addBook(book) {
+    this.#myLibrary.push(book);
+  }
+
+  removeBook(bookIndex) {
+    if (bookIndex > -1) {
+      this.#myLibrary.splice(bookIndex, 1);
+    }
+  }
+
+  size() {
+    return this.#myLibrary.length;
+  }
 }
 
 class Book {
@@ -145,14 +161,6 @@ class Book {
   }
 }
 
-function createBook(title, author, chapters, readStatus) {
-  return new Book(title, author, chapters, readStatus);
-}
-
-function addBookToLibrary(book) {
-  myLibrary.push(book);
-}
-
 function submitFormData() {
   const addMangaModal = document.querySelector("#add-manga-modal");
   const modalForm = document.querySelector("#modal-form");
@@ -165,10 +173,11 @@ function submitFormData() {
     const chapters = document.querySelector('input[name="chapters"]').value;
     const read = document.querySelector('input[name="read"]').checked;
 
-    const book = createBook(title, author, chapters, read);
-    addBookToLibrary(book);
+    const book = new Book(title, author, chapters, read);
+    const library = new Library();
+    library.addBook(book);
 
-    renderBook(book, myLibrary.length - 1);
+    renderBook(book, library.size());
     addMangaModal.close();
   });
 }
