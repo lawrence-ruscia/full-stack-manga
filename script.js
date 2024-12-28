@@ -139,88 +139,106 @@ class CardHandler {
   }
 }
 
-function toggleAddMangaModal() {
-  const addManga = document.querySelector("#add-manga");
-  const close = document.querySelector(".modal-close");
-  const dialog = document.querySelector("#add-manga-modal");
-  const cancel = document.querySelector(".modal-footer > .cancel-btn");
-  const form = document.querySelector("#modal-form");
-  addManga.addEventListener("click", () => {
-    dialog.showModal();
-  });
+class ModalHandler {
+  #addMangaBtn = document.querySelector("#add-manga");
+  #closeBtn = document.querySelector(".modal-close");
+  #modal = document.querySelector("#add-manga-modal");
+  #cancelBtn = document.querySelector(".modal-footer > .cancel-btn");
+  #form = document.querySelector("#modal-form");
 
-  close.addEventListener("click", () => {
-    dialog.close();
-  });
+  bindEventHandlers() {
+    this.#addMangaBtn.addEventListener("click", () => {
+      this.#modal.showModal();
+    });
 
-  cancel.addEventListener("click", () => {
-    dialog.close();
-  });
+    this.#closeBtn.addEventListener("click", () => {
+      this.#modal.close();
+    });
 
-  dialog.addEventListener("close", () => {
-    form.reset();
-  });
+    this.#cancelBtn.addEventListener("click", () => {
+      this.#modal.close();
+    });
+
+    this.#modal.addEventListener("close", () => {
+      this.#form.reset();
+    });
+  }
+
+  get modal() {
+    return this.#modal;
+  }
+
+  get form() {
+    return this.#form;
+  }
 }
 
-function renderBook(book, index) {
-  console.log(book);
-  const cardContainer = document.querySelector(".card-container");
+class UIHandler {
+  #modalHandler = new ModalHandler();
+  #library = new Library();
 
-  const cardItem = new CardHandler(book).createCardItem();
-  cardItem.dataset.index = index;
+  #cardContainer = document.querySelector(".card-container");
 
-  cardContainer.appendChild(cardItem);
-}
+  initialize() {
+    this.#modalHandler.bindEventHandlers();
+    this.#toggleReadStatus();
+    this.#removeBookCard();
+    this.#submitFormData();
+  }
 
-function submitFormData() {
-  const addMangaModal = document.querySelector("#add-manga-modal");
-  const modalForm = document.querySelector("#modal-form");
+  #submitFormData() {
+    const addMangaModal = this.#modalHandler.modal;
+    const modalForm = this.#modalHandler.form;
 
-  modalForm.addEventListener("submit", (e) => {
-    e.preventDefault();
+    modalForm.addEventListener("submit", (e) => {
+      e.preventDefault();
 
-    const title = document.querySelector('input[name="title"]').value;
-    const author = document.querySelector('input[name="author"]').value;
-    const chapters = document.querySelector('input[name="chapters"]').value;
-    const read = document.querySelector('input[name="read"]').checked;
+      const title = document.querySelector('input[name="title"]').value;
+      const author = document.querySelector('input[name="author"]').value;
+      const chapters = document.querySelector('input[name="chapters"]').value;
+      const read = document.querySelector('input[name="read"]').checked;
 
-    const book = new Book(title, author, chapters, read);
-    const library = new Library();
-    library.addBook(book);
+      const book = new Book(title, author, chapters, read);
+      this.#library.addBook(book);
 
-    renderBook(book, library.size() - 1);
-    addMangaModal.close();
-  });
-}
+      this.#renderBook(book, this.#library.size() - 1);
+      addMangaModal.close();
+    });
+  }
 
-function toggleReadStatus() {
-  document.addEventListener("click", (e) => {
-    const target = e.target;
-    if (target.classList.contains("readnow")) {
-      target.textContent =
-        target.textContent.trim() === "Read Now" ? "Continue" : "Read Now";
-    }
-  });
-}
+  #renderBook(book, index) {
+    console.log(book);
 
-function removeBookCard() {
-  const cardContainer = document.querySelector(".card-container");
+    const cardItem = new CardHandler(book).createCardItem();
+    cardItem.dataset.index = index;
 
-  cardContainer.addEventListener("click", (e) => {
-    if (e.target.classList.contains("remove-btn")) {
-      const card = e.target.closest(".card-item");
-      const bookIndex = card.dataset.index;
+    this.#cardContainer.appendChild(cardItem);
+  }
 
-      if (card) {
-        const library = new Library();
-        library.removeBook(bookIndex);
-        card.remove();
+  #toggleReadStatus() {
+    document.addEventListener("click", (e) => {
+      const target = e.target;
+      if (target.classList.contains("readnow")) {
+        target.textContent =
+          target.textContent.trim() === "Read Now" ? "Continue" : "Read Now";
       }
-    }
-  });
+    });
+  }
+
+  #removeBookCard() {
+    this.#cardContainer.addEventListener("click", (e) => {
+      if (e.target.classList.contains("remove-btn")) {
+        const card = e.target.closest(".card-item");
+        const bookIndex = card.dataset.index;
+
+        if (card) {
+          this.#library.removeBook(bookIndex);
+          card.remove();
+        }
+      }
+    });
+  }
 }
 
-toggleReadStatus();
-toggleAddMangaModal();
-removeBookCard();
-submitFormData();
+const handler = new UIHandler();
+handler.initialize();
