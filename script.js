@@ -115,16 +115,34 @@ function renderBook(book, index) {
   cardContainer.appendChild(cardItem);
 }
 
-function Book(title, author, chapters, readStatus) {
-  this.title = title;
-  this.author = author;
-  this.chapters = chapters;
-  this.readStatus = readStatus;
-  this.info = () => {
-    console.log(
-      `Title: ${this.title}, Author: ${this.author}, No. of Chapters: ${this.chapters}, Read status: ${this.readStatus}`
-    );
-  };
+class Book {
+  #title;
+  #author;
+  #chapters;
+  #readStatus;
+
+  constructor(title, author, chapters, readStatus) {
+    this.#title = title;
+    this.#author = author;
+    this.#chapters = chapters;
+    this.#readStatus = readStatus;
+  }
+
+  get title() {
+    return this.#title;
+  }
+
+  get author() {
+    return this.#author;
+  }
+
+  get chapters() {
+    return this.#chapters;
+  }
+
+  get readStatus() {
+    return this.#readStatus;
+  }
 }
 
 function createBook(title, author, chapters, readStatus) {
