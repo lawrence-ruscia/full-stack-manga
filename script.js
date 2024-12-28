@@ -177,7 +177,7 @@ function submitFormData() {
     const library = new Library();
     library.addBook(book);
 
-    renderBook(book, library.size());
+    renderBook(book, library.size() - 1);
     addMangaModal.close();
   });
 }
@@ -198,13 +198,12 @@ function removeBook() {
   cardContainer.addEventListener("click", (e) => {
     if (e.target.classList.contains("remove-btn")) {
       const card = e.target.closest(".card-item");
-      const index = card.dataset.index;
+      const bookIndex = card.dataset.index;
 
       if (card) {
-        myLibrary.splice(index, 1);
+        const library = new Library();
+        library.removeBook(bookIndex);
         card.remove();
-
-        renderBook();
       }
     }
   });
