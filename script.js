@@ -203,7 +203,7 @@ function toggleReadStatus() {
   });
 }
 
-function removeBook() {
+function removeBookCard() {
   const cardContainer = document.querySelector(".card-container");
 
   cardContainer.addEventListener("click", (e) => {
@@ -222,5 +222,5 @@ function removeBook() {
 
 toggleReadStatus();
 toggleAddMangaModal();
-removeBook();
+removeBookCard();
 submitFormData();
