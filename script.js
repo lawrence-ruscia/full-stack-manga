@@ -1,118 +1,3 @@
-function toggleAddMangaModal() {
-  const addManga = document.querySelector("#add-manga");
-  const close = document.querySelector(".modal-close");
-  const dialog = document.querySelector("#add-manga-modal");
-  const cancel = document.querySelector(".modal-footer > .cancel-btn");
-  const form = document.querySelector("#modal-form");
-  addManga.addEventListener("click", () => {
-    dialog.showModal();
-  });
-
-  close.addEventListener("click", () => {
-    dialog.close();
-  });
-
-  cancel.addEventListener("click", () => {
-    dialog.close();
-  });
-
-  dialog.addEventListener("close", () => {
-    form.reset();
-  });
-}
-
-function createMangaCover() {
-  const mangaCover = document.createElement("div");
-  const image = document.createElement("img");
-  image.src = "./assets/images/placeholder.png"; // temp image
-  image.alt = "Manga cover";
-  image.classList.add("manga-cover-img");
-  image.loading = "lazy";
-
-  mangaCover.classList.add("manga-cover");
-  mangaCover.appendChild(image);
-
-  return mangaCover;
-}
-
-function createCardTitle(title) {
-  const cardTitle = document.createElement("h3");
-  cardTitle.classList.add("card-title");
-  cardTitle.textContent = title;
-
-  return cardTitle;
-}
-
-function createCardAuthor(author) {
-  const cardAuthor = document.createElement("p");
-  cardAuthor.classList.add("author");
-  cardAuthor.textContent = author;
-
-  return cardAuthor;
-}
-
-function createButton(buttonType, textContent) {
-  const button = document.createElement("button");
-
-  if (buttonType === "primary") {
-    button.classList.add("primary-btn");
-  }
-
-  if (buttonType === "remove") {
-    button.classList.add("remove-btn");
-  }
-
-  button.type = "button";
-  button.textContent = textContent;
-  button.classList.add("small-btn");
-
-  return button;
-}
-function createCardOption(readStatus) {
-  const cardOption = document.createElement("div");
-  const readStatusText = readStatus ? "Continue" : "Read Now";
-  const readNowBtn = createButton("primary", readStatusText);
-  readNowBtn.classList.add("readnow");
-  const removeBtn = createButton("remove", "Remove");
-
-  cardOption.classList.add("card-option");
-  cardOption.append(readNowBtn, removeBtn);
-
-  return cardOption;
-}
-function createCardInfo(book) {
-  const cardInfo = document.createElement("div");
-  const cardTitle = createCardTitle(book.title);
-  const cardAuthor = createCardAuthor(book.author);
-  const cardOption = createCardOption(book.readStatus);
-
-  cardInfo.classList.add("card-info");
-  cardInfo.append(cardTitle, cardAuthor, cardOption);
-
-  return cardInfo;
-}
-
-function createCardItem(book) {
-  const cardItem = document.createElement("div");
-  const mangaCover = createMangaCover();
-  const cardInfo = createCardInfo(book);
-
-  cardItem.classList.add("card-item");
-
-  cardItem.append(mangaCover, cardInfo);
-
-  return cardItem;
-}
-
-function renderBook(book, index) {
-  console.log(book);
-  const cardContainer = document.querySelector(".card-container");
-  const cardItem = createCardItem(book);
-  cardItem.dataset.index = index;
-
-  cardContainer.appendChild(cardItem);
-}
-
 class Library {
   #myLibrary = [];
 
@@ -159,6 +44,132 @@ class Book {
   get readStatus() {
     return this.#readStatus;
   }
+}
+
+class CardHandler {
+  #book;
+
+  constructor(book) {
+    this.#book = book;
+  }
+
+  #createMangaCover() {
+    const mangaCover = document.createElement("div");
+    const image = document.createElement("img");
+    image.src = "./assets/images/placeholder.png"; // temp image
+    image.alt = "Manga cover";
+    image.classList.add("manga-cover-img");
+    image.loading = "lazy";
+
+    mangaCover.classList.add("manga-cover");
+    mangaCover.appendChild(image);
+
+    return mangaCover;
+  }
+
+  #createCardTitle(title) {
+    const cardTitle = document.createElement("h3");
+    cardTitle.classList.add("card-title");
+    cardTitle.textContent = title;
+
+    return cardTitle;
+  }
+
+  #createCardAuthor(author) {
+    const cardAuthor = document.createElement("p");
+    cardAuthor.classList.add("author");
+    cardAuthor.textContent = author;
+
+    return cardAuthor;
+  }
+
+  #createButton(buttonType, textContent) {
+    const button = document.createElement("button");
+
+    if (buttonType === "primary") {
+      button.classList.add("primary-btn");
+    }
+
+    if (buttonType === "remove") {
+      button.classList.add("remove-btn");
+    }
+
+    button.type = "button";
+    button.textContent = textContent;
+    button.classList.add("small-btn");
+
+    return button;
+  }
+
+  #createCardOption(readStatus) {
+    const cardOption = document.createElement("div");
+    const readStatusText = readStatus ? "Continue" : "Read Now";
+    const readNowBtn = this.#createButton("primary", readStatusText);
+    readNowBtn.classList.add("readnow");
+    const removeBtn = this.#createButton("remove", "Remove");
+
+    cardOption.classList.add("card-option");
+    cardOption.append(readNowBtn, removeBtn);
+
+    return cardOption;
+  }
+
+  #createCardInfo() {
+    const cardInfo = document.createElement("div");
+    const cardTitle = this.#createCardTitle(this.#book.title);
+    const cardAuthor = this.#createCardAuthor(this.#book.author);
+    const cardOption = this.#createCardOption(this.#book.readStatus);
+
+    cardInfo.classList.add("card-info");
+    cardInfo.append(cardTitle, cardAuthor, cardOption);
+
+    return cardInfo;
+  }
+
+  createCardItem() {
+    const cardItem = document.createElement("div");
+    const mangaCover = this.#createMangaCover();
+    const cardInfo = this.#createCardInfo();
+
+    cardItem.classList.add("card-item");
+
+    cardItem.append(mangaCover, cardInfo);
+
+    return cardItem;
+  }
+}
+
+function toggleAddMangaModal() {
+  const addManga = document.querySelector("#add-manga");
+  const close = document.querySelector(".modal-close");
+  const dialog = document.querySelector("#add-manga-modal");
+  const cancel = document.querySelector(".modal-footer > .cancel-btn");
+  const form = document.querySelector("#modal-form");
+  addManga.addEventListener("click", () => {
+    dialog.showModal();
+  });
+
+  close.addEventListener("click", () => {
+    dialog.close();
+  });
+
+  cancel.addEventListener("click", () => {
+    dialog.close();
+  });
+
+  dialog.addEventListener("close", () => {
+    form.reset();
+  });
+}
+
+function renderBook(book, index) {
+  console.log(book);
+  const cardContainer = document.querySelector(".card-container");
+
+  const cardItem = new CardHandler(book).createCardItem();
+  cardItem.dataset.index = index;
+
+  cardContainer.appendChild(cardItem);
 }
 
 function submitFormData() {
